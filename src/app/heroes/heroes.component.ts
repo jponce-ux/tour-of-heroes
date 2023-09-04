@@ -26,8 +26,9 @@ export class HeroesComponent {
   }
 
   delete(hero: Hero): void {
-    this.heroes = this.heroes.filter(h => h !== hero);
-    this.heroService.deleteHero(hero.id).subscribe();
+    if (hero.id){
+      this.heroService.deleteHero(hero.id).subscribe(()=> this.heroes = this.heroes.filter(h => h !== hero));
+    }
   }
 
   ngOnInit(): void {
